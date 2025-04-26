@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\AuthController;
@@ -10,9 +9,8 @@ use App\Http\Controllers\API\DudiController;
 use App\Http\Controllers\API\AlokasiSiswaController;
 use App\Http\Controllers\API\AlokasiGuruController;
 use App\Http\Controllers\API\AbsensiController;
-use App\Http\Livewire\LaporanAbsensi;
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/api/login', [AuthController::class, 'login']);
 Route::middleware(['auth:sanctum', 'update.last.activity', 'check.session.timeout'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);

@@ -12,5 +12,10 @@
         "laravel-vite-plugin": "^1.2.0",
         "tailwindcss": "^4.0.0",
         "vite": "^6.0.11"
+    },
+    "dependencies": {
+        "bootstrap": "^4.6.0",
+        "font-awesome": "^4.7.0",
+        "jquery": "^3.7.1"
     }
 }

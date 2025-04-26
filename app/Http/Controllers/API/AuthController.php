@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
@@ -21,8 +20,10 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            $user->tokens()->delete();
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([

@@ -3,11 +3,11 @@
 @section('content')
 <section class="section">
   <div class="section-header">
-    <h1>Dashboard Admin</h1>
+    <h1>Dashboard Guru</h1>
   </div>
 
   <div class="section-body">
-    <p>Selamat datang di Dashboard Admin!</p>
+    <p>Selamat datang di Dashboard Siswa!</p>
   </div>
 </section>
 @endsection

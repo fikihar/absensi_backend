@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-  <p>Selamat datang, Guru!</p>
-@endsection
+<section class="section">
+  <div class="section-header">
+    <h1>Dashboard Guru</h1>
+  </div>
 
-@php($title = 'Dashboard Guru')
+  <div class="section-body">
+    <p>Selamat datang di Dashboard Guru!</p>
+  </div>
+</section>
+@endsection

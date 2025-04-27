@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>@yield('title') — Absenin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ $title ?? 'Dashboard' }} - Absenin</title>
 
-    <!-- STISLA CSS via CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/css/components.css">
+  <!-- Bootstrap & Stisla CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla/css/components.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/modules/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/modules/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/css/components.css">
 </head>
+
 <body>
-<div id="app">
+  <div id="app">
     <div class="main-wrapper">
+      @include('layouts.navbar')
+      @include('layouts.sidebar')
 
-        {{-- Navbar --}}
-        @include('layouts.navbar')
+      <button id="toggleSidebar" class="btn btn-primary d-md-none">
+        <i class="fas fa-bars"></i>
+    </button>
 
-        {{-- Sidebar --}}
-        @include('layouts.sidebar')
+      <div class="main-content">
+        @yield('content')
+      </div>
 
-        {{-- Main Content --}}
-        <div class="main-content">
-            @yield('content')
-        </div>
-
-        {{-- Footer --}}
-        @include('layouts.footer')
-
+      @include('layouts.footer')
     </div>
-</div>
+  </div>
 
-<!-- STISLA JS via CDN -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery.nicescroll@3.7.6/dist/jquery.nicescroll.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/js/stisla.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/js/scripts.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/stisla@2.3.0/assets/js/custom.js"></script>
+  <!-- General JS Scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/stisla/js/stisla.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/stisla/js/scripts.js"></script>
+  <script>
+    document.getElementById('toggleSidebar').addEventListener('click', function () {
+        document.querySelector('.main-sidebar').classList.toggle('active');
+    });
+</script>
 
 </body>
 </html>

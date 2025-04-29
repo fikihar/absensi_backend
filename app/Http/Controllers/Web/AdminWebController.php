@@ -4,12 +4,22 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Siswa;
+use App\Models\Guru;
+use App\Models\Dudi;
+use App\Models\Absensi;
+
 
 class AdminWebController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $totalSiswa = Siswa::count();
+        $totalGuru = Guru::count();
+        $totalDudi = Dudi::count();
+        $totalAbsensi = Absensi::count();
+
+        return view('admin.dashboard', compact('totalSiswa', 'totalGuru', 'totalDudi', 'totalAbsensi'));
     }
 
     // === Manajemen Siswa ===

@@ -25,23 +25,68 @@ class AdminWebController extends Controller
     // === Manajemen Siswa ===
     public function siswaIndex()
     {
-        return view('admin.data_siswa');
+        // Mengambil semua data siswa
+        $siswas = Siswa::all();
+
+        // Mengirim data ke view
+        return view('admin.data_siswa', compact('siswas'));
     }
+
 
     public function siswaStore(Request $request)
     {
-        // Logic simpan siswa
+        // Validasi data yang diterima
+        $request->validate([
+            'user_id' => 'required|exists:users,id',  // Pastikan user_id valid (berkaitan dengan tabel users)
+            'nis' => 'required|string|unique:siswas,nis',
+            'nama' => 'required|string|max:100',
+            'kelas' => 'required|string|max:10',
+        ]);
+
+        // Simpan data siswa
+        Siswa::create([
+            'user_id' => $request->user_id,  // User ID untuk relasi dengan tabel users
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+        ]);
+
+        return redirect()->route('admin.siswa.index')->with('success', 'Siswa berhasil ditambahkan!');
     }
 
     public function siswaUpdate(Request $request, $id)
     {
-        // Logic update siswa
+        $siswa = Siswa::findOrFail($id);
+
+        // Validasi data update
+        $request->validate([
+            'user_id' => 'required|exists:users,id',  // Pastikan user_id valid (berkaitan dengan tabel users)
+            'nis' => 'required|string|unique:siswas,nis,' . $id,
+            'nama' => 'required|string|max:100',
+            'kelas' => 'required|string|max:10',
+        ]);
+
+        // Update data siswa
+        $siswa->update([
+            'user_id' => $request->user_id,
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+        ]);
+
+        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil diperbarui!');
     }
 
+
+
     public function siswaDestroy($id)
-    {
-        // Logic hapus siswa
-    }
+{
+    $siswa = Siswa::findOrFail($id);
+    $siswa->delete();
+
+    return redirect()->route('admin.siswa.index')->with('success', 'Siswa berhasil dihapus!');
+}
+
 
     // === Manajemen Guru ===
     public function guruIndex()
@@ -128,4 +173,3 @@ class AdminWebController extends Controller
         // Logic export PDF
     }
 }
-

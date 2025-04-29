@@ -41,18 +41,6 @@
                     <i class="fas fa-file-pdf"></i><span>Export PDF</span>
                 </a>
             </li>
-
-            <li class="menu-header">Pengguna</li>
-            <li class="{{ request()->is('profile/edit') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('profile/edit') }}">
-                    <i class="far fa-user"></i><span>Profil</span>
-                </a>
-            </li>
-            <li class="{{ request()->is('profile/change-password') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('profile/change-password') }}">
-                    <i class="fas fa-key"></i><span>Ganti Password</span>
-                </a>
-            </li>
         </ul>
     </aside>
 </div>
